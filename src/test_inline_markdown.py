@@ -5,6 +5,8 @@ from inline_markdown import (
     extract_markdown_images,
     split_nodes_image,
     split_nodes_link,
+    text_to_textnodes,
+    markdown_to_blocks
 )
 
 from textnode import TextNode, TextType
@@ -157,6 +159,43 @@ class TestInlineMarkdown(unittest.TestCase):
             new_nodes,
         )
 
+    def test_text_to_textnodes(self):
+        text = "This is a **bold** and _italic_ text with a `code` block and a [link](https://example.com) and an ![image](https://example.com/image.png)"
+        
+        nodes = text_to_textnodes(text)
+        expected_nodes = [
+            TextNode("This is a ", TextType.TEXT),
+            TextNode("bold", TextType.BOLD),
+            TextNode(" and ", TextType.TEXT),
+            TextNode("italic", TextType.ITALIC),
+            TextNode(" text with a ", TextType.TEXT),
+            TextNode("code", TextType.CODE),
+            TextNode(" block and a ", TextType.TEXT),
+            TextNode("link", TextType.LINK, "https://example.com"),
+            TextNode(" and an ", TextType.TEXT),
+            TextNode("image", TextType.IMAGE, "https://example.com/image.png"),
+        ]
+        self.assertListEqual(expected_nodes, nodes)
+
+    def test_markdown_to_blocks(self):
+        md = """
+This is **bolded** paragraph
+
+This is another paragraph with _italic_ text and `code` here
+This is the same paragraph on a new line
+
+- This is a list
+- with items
+"""
+        blocks = markdown_to_blocks(md)
+        self.assertEqual(
+            blocks,
+            [
+                "This is **bolded** paragraph",
+                "This is another paragraph with _italic_ text and `code` here\nThis is the same paragraph on a new line",
+                "- This is a list\n- with items",
+            ],
+        )
 
 if __name__ == "__main__":
     unittest.main()
