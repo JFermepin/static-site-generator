@@ -20,7 +20,6 @@ class HTMLNode:
         if (self.tag == other.tag) and (self.value == other.value) and (self.children == other.children) and (self.props == other.props):
             return True
         return False
-    
 
 class LeafNode(HTMLNode):
     def __init__(self, tag, value, props = None):
