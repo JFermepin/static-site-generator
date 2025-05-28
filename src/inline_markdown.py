@@ -91,9 +91,3 @@ def split_nodes_link(old_nodes):
 def text_to_textnodes(text):
     text_node = TextNode(text, TextType.TEXT)
     return split_nodes_delimiter(split_nodes_delimiter(split_nodes_delimiter(split_nodes_image(split_nodes_link([text_node])), "`", TextType.CODE), "**", TextType.BOLD), "_", TextType.ITALIC)
-
-def markdown_to_blocks(markdown):
-    blocks = markdown.split("\n\n")
-    blocks = list(map(lambda block: block.strip(), blocks))
-    blocks = list(filter(lambda block: block != "", blocks))
-    return blocks
