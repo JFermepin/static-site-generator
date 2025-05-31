@@ -52,7 +52,6 @@ def markdown_to_html_node(markdown):
         children.append(html_node)
     return ParentNode("div", children, None)
 
-
 def block_to_html_node(block):
     block_type = block_to_block_type(block)
     if block_type == BlockType.PARAGRAPH:

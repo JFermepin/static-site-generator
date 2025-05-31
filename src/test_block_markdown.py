@@ -30,6 +30,18 @@ This is the same paragraph on a new line
             ],
         )
 
+    def test_markdown_to_one_block(self):
+        md = """
+# This is **bolded** paragraph
+"""
+        blocks = markdown_to_blocks(md)
+        self.assertEqual(
+            blocks,
+            [
+                "# This is **bolded** paragraph"
+            ],
+        )
+
     def test_block_to_block_types(self):
         block = "# heading"
         self.assertEqual(block_to_block_type(block), BlockType.HEADING)
@@ -97,7 +109,7 @@ This is another paragraph with _italic_ text and `code` here
 
     def test_headings(self):
         md = """
-# this is an h1
+# this is an h1 **with bold** and _italic_
 
 this is paragraph text
 
@@ -108,7 +120,7 @@ this is paragraph text
         html = node.to_html()
         self.assertEqual(
             html,
-            "<div><h1>this is an h1</h1><p>this is paragraph text</p><h2>this is an h2</h2></div>",
+            "<div><h1>this is an h1 <b>with bold</b> and <i>italic</i></h1><p>this is paragraph text</p><h2>this is an h2</h2></div>",
         )
 
     def test_blockquote(self):

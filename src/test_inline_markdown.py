@@ -10,7 +10,6 @@ from inline_markdown import (
 
 from textnode import TextNode, TextType
 
-
 #TEST INLINE MARKDOWN
 class TestInlineMarkdown(unittest.TestCase):
     def test_delim_bold(self):
