@@ -1,6 +1,6 @@
 # Static Site Generator
 
-A Python static site generator with no external dependencies as a [boot.dev](https://boot.dev) project. Write content in Markdown, run a single command, and get a ready-to-deploy HTML site.
+A Python static site generator with no external dependencies. Write content in Markdown, run a single command, and get a ready-to-deploy HTML site. This is a [boot.dev](https://boot.dev) project. 
 
 ## Features
 
